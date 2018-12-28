@@ -7,10 +7,13 @@
 #include <unordered_set>
 
 class BoxId {
-   public:
+    friend std::ostream& operator<<(std::ostream& o, BoxId const& box);
+
+   private:
     std::string const id;
     std::unordered_set<int> occurances;
 
+   public:
     BoxId(std::string i) : id{i}, occurances{} {
         std::multiset<char> char_occurances{};
         char_occurances.insert(id.cbegin(), id.cend());
@@ -24,8 +27,7 @@ class BoxId {
         }
     };
     ~BoxId() = default;
+    std::unordered_set<int> const& getOccurances() const;
 };
-
-std::ostream& operator<<(std::ostream& o, BoxId const& box);
 
 #endif

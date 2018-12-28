@@ -4,7 +4,7 @@
 #include <unordered_set>
 
 void CheckSum::add_id(BoxId const& box_id) {
-    this->occurance_count.insert(box_id.occurances.cbegin(), box_id.occurances.cend());
+    this->occurance_count.insert(box_id.getOccurances().cbegin(), box_id.getOccurances().cend());
 }
 
 int CheckSum::calculate() const {
