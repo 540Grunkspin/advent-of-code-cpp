@@ -28,6 +28,23 @@ class BoxId {
     };
     ~BoxId() = default;
     std::unordered_set<int> const& getOccurances() const;
+    char const& operator[](std::size_t const index) const;
+    std::size_t const size() const;
+};
+
+class BoxIdDiff {
+    friend std::ostream& operator<<(std::ostream& o, BoxIdDiff const& diff);
+
+   private:
+    std::string const kept_chars;
+    int const diff_count;
+    BoxIdDiff(std::string const& kept, int const diff) : kept_chars{kept}, diff_count{diff} {};
+
+   public:
+    BoxIdDiff(BoxIdDiff const& other) = default;
+    int get_diff_count() { return diff_count; }
+    static BoxIdDiff const from_box_ids(BoxId const& b1, BoxId const& b2);
+    ~BoxIdDiff() = default;
 };
 
 #endif
