@@ -11,7 +11,6 @@ class BoxId {
     std::string const id;
     std::unordered_set<int> occurances;
 
-    BoxId() = default;
     BoxId(std::string i) : id{i}, occurances{} {
         std::multiset<char> char_occurances{};
         char_occurances.insert(id.cbegin(), id.cend());
@@ -24,8 +23,6 @@ class BoxId {
             }
         }
     };
-    BoxId(BoxId const& box_id) = default;
-    BoxId(BoxId&& box_id) = default;
     ~BoxId() = default;
 };
 
