@@ -3,6 +3,12 @@
 
 static const std::regex claim_matcher{"#(\\d+)\\s+@\\s+(\\d+),(\\d+):\\s+(\\d+)x(\\d+)"};
 
+std::ostream& operator<<(std::ostream& out, Claim const& claim) {
+    return out << "#" << claim.id << " @ "
+               << claim.point.x << "," << claim.point.y
+               << ": " << claim.dimen.width << "x" << claim.dimen.height;
+}
+
 Claim const Claim::from_string(std::string const& input) {
     std::smatch matches;
     std::regex_match(input, matches, claim_matcher);

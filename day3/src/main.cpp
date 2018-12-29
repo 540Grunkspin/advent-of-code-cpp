@@ -3,10 +3,12 @@
 #include <string>
 #include <vector>
 #include "claim.hpp"
+#include "fabric.hpp"
 
 std::vector<std::string> get_input_data(char const *const file_name);
 
 int main(int argc, char *argv[]) {
+    Fabric fabric{};
     auto input_strings = get_input_data(argv[1]);
 
     std::vector<Claim> claims;
@@ -14,7 +16,13 @@ int main(int argc, char *argv[]) {
         claims.push_back(Claim::from_string(input_string));
     }
 
-    std::cout << "All input parsed\n";
+    for (auto &claim : claims) {
+        fabric.add_claim(claim);
+    }
+
+    std::cout << "Colliding size is: " << fabric.colliding_claims_size() << '\n';
+
+    return 0;
 }
 
 std::vector<std::string> get_input_data(char const *const file_name) {

@@ -1,6 +1,7 @@
 #ifndef CLAIM_H_
 #define CLAIM_H_
 
+#include <iostream>
 #include <string>
 
 struct Point {
@@ -19,13 +20,14 @@ struct Dimension {
 
 class Claim {
    private:
-    int const id;
-    Point const point;
-    Dimension const dimen;
     Claim(int const i, Point const p, Dimension const d) : id{i}, point{p}, dimen{d} {};
 
    public:
+    int const id;
+    Point const point;
+    Dimension const dimen;
     static Claim const from_string(std::string const& input);
+    friend std::ostream& operator<<(std::ostream& out, Claim const& claim);
 };
 
 #endif
